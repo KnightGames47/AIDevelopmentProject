@@ -11,8 +11,10 @@ namespace BTree
             SUCCESS
         }
 
-        public NodeState state = NodeState.RUNNING;
-        public bool started = false;
+        [HideInInspector] public NodeState state = NodeState.RUNNING;
+        [HideInInspector] public bool started = false;
+        [HideInInspector] public string guid;
+        [HideInInspector] public Vector2 position;
 
         public NodeState Evaluate()
         {
@@ -31,6 +33,11 @@ namespace BTree
             }
 
             return state;
+        }
+
+        public virtual Node Clone()
+        {
+            return Instantiate(this);
         }
 
         protected abstract void OnStart();

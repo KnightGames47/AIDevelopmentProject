@@ -4,6 +4,13 @@ namespace BTree
 {
     public abstract class Node_Decorator : Node
     {
-        public Node child;
+        [HideInInspector] public Node child;
+
+        public override Node Clone()
+        {
+            Node_Decorator node = Instantiate(this);
+            node.child = child.Clone();
+            return node;
+        }
     }
 }
