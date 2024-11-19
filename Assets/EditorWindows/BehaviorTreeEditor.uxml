@@ -1,3 +1,16 @@
-<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
     <Style src="project://database/Assets/EditorWindows/BehaviorTreeEditor.uss?fileID=7433441132597879392&amp;guid=73ce5be1385458c44a3502af8ea6aba8&amp;type=3#BehaviorTreeEditor" />
+    <editor:Toolbar>
+        <editor:ToolbarMenu text="Assets" />
+    </editor:Toolbar>
+    <SplitView fixed-pane-initial-dimension="300">
+        <engine:VisualElement name="Left_Panel" style="flex-grow: 1;">
+            <engine:Label text="Inspector" style="background-color: rgba(37, 37, 37, 0);" />
+            <InspectorView />
+        </engine:VisualElement>
+        <engine:VisualElement name="Right_Panel" style="flex-grow: 1;">
+            <engine:Label text="Tree View" style="background-color: rgba(37, 37, 37, 0);" />
+            <BehaviorTreeView style="flex-grow: 1;" />
+        </engine:VisualElement>
+    </SplitView>
 </engine:UXML>
