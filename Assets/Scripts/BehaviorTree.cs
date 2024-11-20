@@ -20,6 +20,7 @@ namespace BTree
             return treeState;
         }
 
+#if UNITY_EDITOR
         public Node CreateNode(System.Type type)
         {
             Node node = ScriptableObject.CreateInstance(type) as Node;
@@ -116,11 +117,28 @@ namespace BTree
 
             return children;
         }
+#endif
+
+        public void Traverse(Node node, System.Action<Node> visitor)
+        {
+            if(node)
+            {
+                visitor.Invoke(node);
+                var children = GetChildren(node);
+                children.ForEach((n) => Traverse(n, visitor));
+            }
+        }
 
         public BehaviorTree Clone()
         {
             BehaviorTree tree = Instantiate(this);
             tree.rootNode = tree.rootNode.Clone();
+            tree.nodes = new List<Node>();
+            Traverse(tree.rootNode, (n) =>
+            {
+                tree.nodes.Add(n);
+            });
+
             return tree;
         }
     }

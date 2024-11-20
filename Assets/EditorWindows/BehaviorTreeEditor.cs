@@ -5,6 +5,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor.Callbacks;
+using System;
 
 public class BehaviorTreeEditor : EditorWindow
 {
@@ -58,12 +59,52 @@ public class BehaviorTreeEditor : EditorWindow
         OnSelectionChange();
     }
 
+    private void OnEnable()
+    {
+        EditorApplication.playmodeStateChanged -= OnPlayModeStateChanged;
+        EditorApplication.playmodeStateChanged += OnPlayModeStateChanged;
+    }
+
+
+    private void OnDisable()
+    {
+        EditorApplication.playmodeStateChanged -= OnPlayModeStateChanged;
+    }
+
+    private void OnPlayModeStateChanged(PlayModeStateChange obj)
+    {
+        throw new NotImplementedException();
+    }
+
+
     private void OnSelectionChange()
     {
         BehaviorTree tree = Selection.activeObject as BehaviorTree;
-        if(tree && AssetDatabase.CanOpenAssetInEditor(tree.GetInstanceID()))
+        if(!tree)
         {
-            treeView.PopulateView(tree);
+            if(Selection.activeGameObject)
+            {
+                BehaviorTreeRunner runner = Selection.activeGameObject.GetComponent<BehaviorTreeRunner>();
+                if(runner)
+                {
+                    tree = runner.tree;
+                }
+            }
+        }
+
+        if (Application.isPlaying)
+        {
+            if (tree)
+            {
+                treeView.PopulateView(tree);
+            }
+        }
+        else
+        {
+            if(tree && AssetDatabase.CanOpenAssetInEditor(tree.GetInstanceID()))
+            {
+                treeView.PopulateView(tree);
+            }
         }
     }
 
