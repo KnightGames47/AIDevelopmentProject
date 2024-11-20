@@ -15,7 +15,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 85782b5d03b928c4990783565ad096aa
-  position: {x: 180, y: 332}
+  position: {x: -176, y: 379}
   duraction: 1
 --- !u!114 &-7455666754240733349
 MonoBehaviour:
@@ -32,7 +32,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 2256a415dfc3d6340924d53a13f12203
-  position: {x: -37, y: 304}
+  position: {x: -116, y: 188}
   children:
   - {fileID: 2316998050832919192}
   - {fileID: 5557504289975676658}
@@ -55,7 +55,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 27fcebadcf100cb4f80faa129682fe71
-  position: {x: -438.84, y: 293.5}
+  position: {x: -116, y: -71.52087}
   child: {fileID: -2255737402702264017}
 --- !u!114 &-2849933555393501914
 MonoBehaviour:
@@ -72,7 +72,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: aa535ff5bc2ff2144abfd50fe3b847cd
-  position: {x: 180, y: 227}
+  position: {x: -4.898697, y: 379.12518}
   message: Two
 --- !u!114 &-2255737402702264017
 MonoBehaviour:
@@ -89,7 +89,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 2297698c178271046a46d77e858c7c8e
-  position: {x: -216, y: 294}
+  position: {x: -116, y: 36.479126}
   child: {fileID: -7455666754240733349}
 --- !u!114 &11400000
 MonoBehaviour:
@@ -115,6 +115,7 @@ MonoBehaviour:
   - {fileID: 2445490356542738921}
   - {fileID: 497373961487133106}
   - {fileID: -2255737402702264017}
+  - {fileID: 7902178720870868677}
 --- !u!114 &497373961487133106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,7 +131,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 10381d853091d5a40a2c53f91ea89a3e
-  position: {x: 180, y: 551}
+  position: {x: -503.89868, y: 375.12518}
   duraction: 1
 --- !u!114 &2316998050832919192
 MonoBehaviour:
@@ -147,7 +148,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: e3fe088f16352f441b8adb364ba38340
-  position: {x: 180, y: 25}
+  position: {x: 337.10138, y: 385.1252}
   message: One
 --- !u!114 &2445490356542738921
 MonoBehaviour:
@@ -164,7 +165,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 468e356298c576a48a9384bb85b64b2b
-  position: {x: 180, y: 431}
+  position: {x: -344, y: 375}
   message: Three
 --- !u!114 &5557504289975676658
 MonoBehaviour:
@@ -181,5 +182,22 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: d725d7e9267128247a4ab24be2a02bb2
-  position: {x: 180, y: 123}
+  position: {x: 153.10132, y: 379.12518}
   duraction: 1
+--- !u!114 &7902178720870868677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4728cf8ebc863eb468402a4f07ecd4e9, type: 3}
+  m_Name: Node_Sequencer
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 5fd20a132ba64d144b818d5c2c2e196a
+  position: {x: 103.154976, y: 177.00339}
+  children: []

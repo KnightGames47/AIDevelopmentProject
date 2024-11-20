@@ -1,0 +1,127 @@
+#node-border {
+    background-color: rgb(32, 32, 32);
+    border-left-color: rgb(20, 20, 20);
+    border-right-color: rgb(20, 20, 20);
+    border-top-color: rgb(20, 20, 20);
+    border-bottom-color: rgb(20, 20, 20);
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+#input {
+    align-items: center;
+}
+
+#output {
+    align-items: center;
+}
+
+#selection-border {
+    border-left-color: rgb(0, 175, 255);
+    border-right-color: rgb(0, 175, 255);
+    border-top-color: rgb(0, 175, 255);
+    border-bottom-color: rgb(0, 175, 255);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+:hover > #selection-border {
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-left-color: rgb(0, 175, 255);
+    border-right-color: rgb(0, 175, 255);
+    border-top-color: rgb(0, 175, 255);
+    border-bottom-color: rgb(0, 175, 255);
+}
+
+:selected > #selection-border {
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-left-color: rgb(0, 175, 255);
+    border-right-color: rgb(0, 175, 255);
+    border-top-color: rgb(0, 175, 255);
+    border-bottom-color: rgb(0, 175, 255);
+}
+
+:hover:selected > #selection-border {
+    border-left-color: rgb(0, 175, 255);
+    border-right-color: rgb(0, 175, 255);
+    border-top-color: rgb(0, 175, 255);
+    border-bottom-color: rgb(0, 175, 255);
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.node {
+    min-width: 150px;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+}
+
+#title {
+    -unity-font-style: bold;
+    font-size: 14px;
+}
+
+#description {
+    font-size: 10px;
+}
+
+#divider {
+    min-height: 1px;
+    background-color: rgb(87, 87, 87);
+}
+
+.action #input {
+    background-color: rgb(71, 229, 188);
+}
+
+.composite #input {
+    background-color: rgb(91, 192, 235);
+}
+
+.decorator #input {
+    background-color: rgb(221, 164, 72);
+}
+
+.root #input {
+    background-color: rgb(219, 22, 47);
+    min-height: 20px;
+}
