@@ -71,7 +71,7 @@ public class BehaviorTreeEditor : EditorWindow
         EditorApplication.playmodeStateChanged -= OnPlayModeStateChanged;
     }
 
-    private void OnPlayModeStateChanged(PlayModeStateChange obj)
+    private void OnPlayModeStateChanged()
     {
         throw new NotImplementedException();
     }
