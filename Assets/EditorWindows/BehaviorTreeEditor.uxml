@@ -5,8 +5,16 @@
     </editor:Toolbar>
     <SplitView fixed-pane-initial-dimension="300">
         <engine:VisualElement name="Left_Panel" style="flex-grow: 1;">
-            <engine:Label text="Inspector" style="background-color: rgba(37, 37, 37, 0);" />
-            <InspectorView />
+            <SplitView orientation="Vertical" fixed-pane-initial-dimension="180">
+                <engine:VisualElement name="inspector-container" style="flex-grow: 1;">
+                    <engine:Label text="Inspector" style="background-color: rgba(37, 37, 37, 0);" />
+                    <InspectorView />
+                </engine:VisualElement>
+                <engine:VisualElement name="blackboard-container" style="flex-grow: 1;">
+                    <engine:Label text="Blackboard" style="background-color: rgb(37, 37, 37);" />
+                    <engine:IMGUIContainer />
+                </engine:VisualElement>
+            </SplitView>
         </engine:VisualElement>
         <engine:VisualElement name="Right_Panel" style="flex-grow: 1;">
             <engine:Label text="Tree View" style="background-color: rgba(37, 37, 37, 0);" />

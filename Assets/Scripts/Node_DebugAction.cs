@@ -8,6 +8,11 @@ public class Node_DebugAction : Node_Action
     protected override NodeState OnEvaluate()
     {
         Debug.Log($"OnEvaluate {message}");
+
+        Debug.Log($"Blackboard: {blackboard.moveToPosition}");
+
+        blackboard.moveToPosition.x += 1;
+
         return NodeState.SUCCESS;
     }
 

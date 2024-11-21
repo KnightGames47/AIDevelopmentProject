@@ -11,6 +11,7 @@ namespace BTree
         public Node rootNode;
         public Node.NodeState treeState = Node.NodeState.RUNNING;
         public List<Node> nodes = new List<Node>();
+        public BlackBoard blackboard = new BlackBoard();
 
         public Node.NodeState Evaluate() 
         { 
@@ -30,7 +31,9 @@ namespace BTree
             Undo.RecordObject(this, "Behavior Tree (CreateNode)");
             nodes.Add(node);
 
-            AssetDatabase.AddObjectToAsset(node, this);
+            if(!Application.isPlaying)
+                AssetDatabase.AddObjectToAsset(node, this);
+
             Undo.RegisterCreatedObjectUndo(node, "Behavior Tree (CreateNode)");
 
             AssetDatabase.SaveAssets();
@@ -140,6 +143,15 @@ namespace BTree
             });
 
             return tree;
+        }
+
+        public void Bind(AiAgent agent)
+        {
+            Traverse(rootNode, node =>
+            {
+                node.agent = agent;
+                node.blackboard = blackboard;
+            });
         }
     }
 }

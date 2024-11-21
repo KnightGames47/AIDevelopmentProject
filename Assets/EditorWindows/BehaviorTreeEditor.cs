@@ -14,6 +14,10 @@ public class BehaviorTreeEditor : EditorWindow
 
     BehaviorTreeView treeView;
     InspectorView inspectorView;
+    IMGUIContainer blackboardView;
+
+    SerializedObject treeObject;
+    SerializedProperty blackboardProperty;
 
     [MenuItem("BehaviorTreeEditor/Editor ...")]
     public static void OpenWindow()
@@ -49,6 +53,13 @@ public class BehaviorTreeEditor : EditorWindow
 
         treeView = root.Q<BehaviorTreeView>();
         inspectorView = root.Q<InspectorView>();
+        blackboardView = root.Q<IMGUIContainer>();
+        blackboardView.onGUIHandler = () =>
+        {
+            treeObject.Update();
+            EditorGUILayout.PropertyField(blackboardProperty);
+            treeObject.ApplyModifiedProperties();
+        };
 
         treeView.OnNodeSelected = OnNodeSelectionChanged;
 
@@ -61,19 +72,30 @@ public class BehaviorTreeEditor : EditorWindow
 
     private void OnEnable()
     {
-        EditorApplication.playmodeStateChanged -= OnPlayModeStateChanged;
-        EditorApplication.playmodeStateChanged += OnPlayModeStateChanged;
+        EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
+        EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
     }
-
 
     private void OnDisable()
     {
-        EditorApplication.playmodeStateChanged -= OnPlayModeStateChanged;
+        EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
     }
 
-    private void OnPlayModeStateChanged()
+    private void OnPlayModeStateChanged(PlayModeStateChange obj)
     {
-        throw new NotImplementedException();
+        switch (obj)
+        {
+            case PlayModeStateChange.EnteredEditMode:
+                OnSelectionChange();
+                break;
+            case PlayModeStateChange.ExitingEditMode:
+                break;
+            case PlayModeStateChange.EnteredPlayMode:
+                OnSelectionChange();
+                break;
+            case PlayModeStateChange.ExitingPlayMode:
+                break;
+        }
     }
 
 
@@ -106,10 +128,21 @@ public class BehaviorTreeEditor : EditorWindow
                 treeView.PopulateView(tree);
             }
         }
+
+        if(tree != null)
+        {
+            treeObject = new SerializedObject(tree);
+            blackboardProperty = treeObject.FindProperty("blackboard");
+        }
     }
 
     void OnNodeSelectionChanged(NodeView node)
     {
         inspectorView.UpdateSelection(node);
+    }
+
+    private void OnInspectorUpdate()
+    {
+        treeView?.UpdateNodeState();
     }
 }

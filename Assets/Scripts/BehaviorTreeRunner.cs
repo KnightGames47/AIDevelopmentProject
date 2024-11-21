@@ -1,6 +1,7 @@
 using UnityEngine;
 using BTree;
 
+[RequireComponent(typeof(AiAgent))]
 public class BehaviorTreeRunner : MonoBehaviour
 {
     public BehaviorTree tree;
@@ -9,6 +10,7 @@ public class BehaviorTreeRunner : MonoBehaviour
     void Start()
     {
         tree = tree.Clone();
+        tree.Bind(GetComponent<AiAgent>());
     }
 
     // Update is called once per frame

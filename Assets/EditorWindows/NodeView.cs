@@ -4,6 +4,7 @@ using System;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
 using UnityEditor;
+using UnityEditor.UIElements;
 
 public class NodeView : UnityEditor.Experimental.GraphView.Node
 {
@@ -23,6 +24,10 @@ public class NodeView : UnityEditor.Experimental.GraphView.Node
         CreateInputPorts();
         CreateOutputPorts();
         SetupClasses();
+
+        Label descriptionLabel = this.Q<Label>("description");
+        descriptionLabel.bindingPath = "description";
+        descriptionLabel.Bind(new SerializedObject(node));
     }
 
     private void SetupClasses()
@@ -88,6 +93,45 @@ public class NodeView : UnityEditor.Experimental.GraphView.Node
         if (OnNodeSelected != null)
         {
             OnNodeSelected.Invoke(this);
+        }
+    }
+
+    public void SortChildren()
+    {
+        Node_Composite composite = node as Node_Composite;
+
+        if(composite)
+        {
+            composite.children.Sort(SortByHorizontalPosition);
+        }
+    }
+
+    private int SortByHorizontalPosition(BTree.Node left, BTree.Node right)
+    {
+        return left.position.x < right.position.x ? -1 : 1;
+    }
+
+    public void UpdateStates()
+    {
+        RemoveFromClassList("running");
+        RemoveFromClassList("failure");
+        RemoveFromClassList("success");
+
+        if (Application.isPlaying)
+        {
+            switch (node.state)
+            {
+                case BTree.Node.NodeState.RUNNING:
+                    if (node.started)
+                        AddToClassList("running");
+                    break;
+                case BTree.Node.NodeState.FAILURE:
+                    AddToClassList("failure");
+                    break;
+                case BTree.Node.NodeState.SUCCESS:
+                    AddToClassList("success");
+                    break;
+            }
         }
     }
 }
